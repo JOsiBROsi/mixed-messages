@@ -1,11 +1,5 @@
 'use strict';
 
-/* Takes in the array's length and returns a random number from 0 to excluding 
-the length of the array. */
-const randomIndex = (lengthOfArray) => {
-  return Math.floor(Math.random() * lengthOfArray);
-};
-
 // Object containing arrays of character names, sarcasms, and inspirational quotes.
 const messages = {
   names: [
@@ -33,32 +27,40 @@ const messages = {
     'Me pretending to listen should be enough for you.',
   ],
   inspiration: [
-    "Nothing is impossible. The word itself says 'I'm possible!'",
-    'Keep your face always toward the sunshine, and shadows will fall behind you',
+    'Nothing is impossible. The word itself says "I\'m possible!".',
+    'Keep your face always toward the sunshine, and shadows will fall behind you.',
     'Belief creates the actual fact.',
     'In a gentle way, you can shake the world.',
     'Wake up determined, go to bed satisfied.',
   ],
 };
 
+/* Takes in the array's length and returns a random number from 0 to excluding 
+the length of the array. */
+const randomIndex = (lengthOfArray) => {
+  return Math.floor(Math.random() * lengthOfArray);
+};
+
+const randomMessage = (array) => {
+  const index = randomIndex(array.length);
+  // Using the random index to access the array's element.
+  return array[index];
+};
+
 // Function that displays the random message.
-const displayRandomMessage = () => {
+const displayMessage = () => {
   // Getting random messages everytime the program is run.
-  const getName = messages.names[randomIndex(messages.names.length)];
-  const getSarcasm = messages.sarcasm[randomIndex(messages.sarcasm.length)];
-  const getInspiration =
-    messages.inspiration[randomIndex(messages.inspiration.length)];
   return (
     'Welcome, you must be ' +
-    getName +
+    randomMessage(messages.names) +
     '!\n' +
     'Sarcasm: ' +
-    getSarcasm +
+    randomMessage(messages.sarcasm) +
     '\n' +
     'Inspiration: ' +
-    getInspiration +
+    randomMessage(messages.inspiration) +
     '\n'
   );
 };
 
-console.log(displayRandomMessage());
+console.log(displayMessage());
